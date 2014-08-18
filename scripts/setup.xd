@@ -1,0 +1,5 @@
+had config fs --namenode hdfs://pivhdsne:8020
+admin config server http://localhost:9393
+stream list
+hadoop fs ls /xd/
+
