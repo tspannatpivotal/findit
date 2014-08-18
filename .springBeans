@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.gopivotal.redisstore.Application</config>
+		<config>java:io.pivotal.nbcuview.Application</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

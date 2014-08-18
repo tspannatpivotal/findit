@@ -3,18 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.gopivotal</groupId>
-	<artifactId>redisstore</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<groupId>io.pivotal</groupId>
+	<artifactId>nbcuview</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-	<name>redisstore</name>
-	<description>redisstore</description>
+	<name>nbcuview</name>
+	<description>nbcuview</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.1.4.RELEASE</version>
+		<version>1.1.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -29,10 +29,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
@@ -40,26 +36,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgres-driver.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-spring-service-connector</artifactId>
-        <version>1.0.0.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-cloudfoundry-connector</artifactId>
-        <version>1.0.0.RELEASE</version>
-    </dependency>
+<dependency>
+    <groupId>com.pivotal.gemfirexd</groupId>
+    <artifactId>gemfirexd-client</artifactId>
+    <version>1.0</version>
+</dependency>
+     <dependency>
+          <groupId>com.pivotal</groupId>
+          <artifactId>gfxd-dialect</artifactId>
+          <version>1.0</version>
+   </dependency>
+<dependency>
+<groupId>com.pivotal.gemfirexd</groupId>
+<artifactId>gemfirexd</artifactId>
+<version>1.0</version>
+</dependency>
 	</dependencies>
     <!-- Transitively bring in the Spring IO Platform Bill-of-Materials `pom.xml` -->    
     <dependencyManagement>
@@ -67,7 +58,7 @@
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
-                <version>1.0.0.RELEASE</version>
+                <version>1.0.1.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -80,13 +71,48 @@
        <name>Spring Maven Milestone Repository</name>
        <url>http://repo.spring.io/milestone</url>
      </repository>
+     <repository>
+<id>gemfirexd-repository</id>
+<name>GemFire XD Repository</name>
+<url>http://dist.gemstone.com/maven/release</url>
+</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>http://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>spring-release</id>
+			<name>Spring Release</name>
+			<url>http://repo.spring.io/release</url>
+		</repository>
+		<repository>
+			<id>sqlfire-repository</id>
+			<name>SQLFire Repository</name>
+			<url>http://dist.gemstone.com/maven/release</url>
+		</repository>
 </repositories>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>http://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-release</id>
+			<name>Spring Release</name>
+			<url>http://repo.spring.io/release</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.gopivotal.redisstore.Application</start-class>
+		<start-class>io.pivotal.nbcuview.Application</start-class>
 		<java.version>1.7</java.version>
-		<postgres-driver.version>9.0-801.jdbc4</postgres-driver.version>
 	</properties>
 
 	<build>
@@ -94,6 +120,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
