@@ -8,12 +8,18 @@
             <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
             <property name="hibernate.show_sql" value="true"/>
             
-            <!-- Database connection settings -->
-			<property name="connection.driver_class" value="com.pivotal.gemfirexd.jdbc.ClientDriver"/>
-			<property name="connection.url" value="jdbc:gemfirexd://localhost:1527"/>
+            <!-- Thin Database connection settings -->
+			<property name="Tconnection.driver_class" value="com.pivotal.gemfirexd.jdbc.ClientDriver"/>
+			<property name="Tconnection.url" value="jdbc:gemfirexd://localhost:1527"/>
+			<property name="Tconnection.username" value="gfxd"/>
+			<property name="Tconnection.password" value="gfxd"/>
+
+            <!-- Peer Database connection settings -->
+			<property name="connection.driver_class" value="com.pivotal.gemfirexd.jdbc.EmbeddedDriver"/>
+			<property name="connection.url" value="jdbc:gemfirexd:;locators=localhost[10101];mcast-port=0;host-data=false"/>
 			<property name="connection.username" value="gfxd"/>
 			<property name="connection.password" value="gfxd"/>
-
+			
         </properties>
     </persistence-unit>
 </persistence>
