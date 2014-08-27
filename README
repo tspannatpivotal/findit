@@ -1,7 +1,3 @@
-#spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-
-
-
 
 Testing
 
@@ -35,6 +31,50 @@ gfxd
 gfxd> connect client 'localhost:1527';
 
 gfxd> create table nbcudata(id int, name varchar(100), value varchar(255)) REPLICATE PERSISTENT ASYNCHRONOUS;
+
+
+
+create table nbcuRatings(	coverageArea varchar(255),	marketBreak varchar(255),	demographic varchar(255),	broadcastDate date,	originator varchar(255),	programName varchar(255),	trackage varchar(255),	telecastReportStartTime time,	telecastReportEndTime time,	minuteNumber varchar(255),	mopValue bigint, 	mcusAAPercent DECIMAL(12,2), mcUSAAProj bigint,	mcMinToTeleUSAAIndexPerc DECIMAL(12,2), ratingBase bigint, 	mcWeightedViewAAMinutes DECIMAL(12,2) ) REPLICATE PERSISTENT ASYNCHRONOUS;
+
+
+create table nbcuRatings(	coverageArea varchar(255),	
+marketBreak varchar(255),	demographic varchar(255),	
+broadcastDate date,	originator varchar(255),	
+programName varchar(255),	trackage varchar(255),
+	telecastReportStartTime time,
+		telecastReportEndTime time,
+			minuteNumber varchar(255),
+				mopValue bigint, 	
+				mcusAAPercent DECIMAL(12,2), 
+				mcUSAAProj bigint,	
+				mcMinToTeleUSAAIndexPerc DECIMAL(12,2), 
+				ratingBase bigint, 
+					mcWeightedViewAAMinutes DECIMAL(12,2) ) REPLICATE PERSISTENT ASYNCHRONOUS;
+mtp_rawlosses.csv
+
+create table nbcuRatings(coverageArea varchar(255),marketBreak varchar(255),demographic varchar(255),broadcastDate date,originator varchar(255),programName varchar(255),trackage varchar(255),telecastReportStartTime time,telecastReportEndTime time,minuteNumber varchar(255),mopValue bigint, mcusAAPercent DECIMAL(12,2), mcUSAAProj bigint,mcMinToTeleUSAAIndexPerc DECIMAL(12,2), ratingBase bigint, mcWeightedViewAAMinutes DECIMAL(12,2) ) REPLICATE PERSISTENT ASYNCHRONOUS;
+
+
+installed dos2unix
+
+--columns=coverageArea 
+marketBreak, 
+demographic, 
+broadcastDate, 
+originator, 
+programName, 
+trackage, 
+telecastReportStartTime 
+telecastReportEndTime 
+minute, 
+mopValue,  
+mcusAAPercent, 
+mcUSAAProj, 
+mcMinToTeleUSAAIndexPerc, 
+ratingBase  ,
+mcWeightedViewAAMinutes 
+
+PARTITION BY COLUMN(demographic)  
 
 Build and Deploy
 
@@ -71,6 +111,16 @@ Spring-XD
 /home/gpadmin/nbcu.xd 
 
 stream create --name nbcufile --definition "tail --name=/tmp/xd/input/nbcudata | jdbc --tableName=APP.nbcudata --columns=id,name,value" --deploy
-stream create --name nbcufiletap --definition "tap:stream:nbcufile > hdfs" --deploy
+stream create --name nbcufiletap --definition "tap:stream:nbcufile > hdfs --rollover=128M --idleTimeout=60000" --deploy
 
+-- 1 minute timeout
 
+For Hadoop, XD Options
+--rollover=64M, --rollover=512G or --rollover=1T.
+when to rollover the file from tmp to final
+http://docs.spring.io/spring-xd/docs/1.0.0.RELEASE/reference/html/#hadoop-hdfs
+
+ idleTimeout option that will automatically close the file if there was no writes during the specified period of time. 
+ This feature is also useful in cases where burst of data is written into a stream and you’d like that data to become visible in HDFS.
+ 
+ 
