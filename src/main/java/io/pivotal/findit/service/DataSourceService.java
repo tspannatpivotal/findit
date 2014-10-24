@@ -21,10 +21,43 @@ public class DataSourceService {
 	NameValueRepository nameValueRepository;
 	  
 	private final static String viewTemplate = "Name: %s";
+	private final static String saveTemplate = "Name: %s Value: %s";
 
+	public boolean deleteValue(Long id) {
+		if ( id < 0) {
+			return false;
+		}
+		nameValueRepository.delete(id);
+		return true;
+	}
+	
+	public boolean deleteValue(NameValue nameValue) {
+		if ( nameValue == null) {
+			return false;
+		}
+		nameValueRepository.delete(nameValue);
+		return true;
+	}
+	public NameValue storeValue(String keyName, String value )
+	{
+		return storeValue(new NameValue(keyName, value));
+	}
+	
+	public NameValue storeValue(NameValue nameValue) {
+		if (nameValue == null || nameValue.getName() == null || nameValue.getName().trim().length() <= 0 || 
+				nameValue.getValue() == null || nameValue.getValue().trim().length() <=0 ) {
+			return null;
+		}
+
+		logger.error(String.format(saveTemplate, nameValue.toString()));
+
+		return nameValueRepository.save(nameValue);
+	}
+
+	
 	public NameValue retrieveValue(String keyName) {
 		logger.error(String.format(viewTemplate, keyName));
-		
+
 		List<NameValue> nameValues = nameValueRepository.findByName(keyName);
 		
 		if(nameValues == null || nameValues.size() <= 0) {

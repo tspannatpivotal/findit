@@ -6,6 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Notes:
+ * 
+ * http://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
+ * 
+ * @author tspann
+ *
+ */
 @Entity
 @Table(name="NameValue")
 public class NameValue {
