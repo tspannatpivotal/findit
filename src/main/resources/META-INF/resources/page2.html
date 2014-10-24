@@ -7,7 +7,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.js"></script>	
   <script src="./dist/js/ngAtp-bundle.js"></script>
   <link href="./dist/css/ng-atp.css" rel="stylesheet">
-  <link href="nbcu.css" rel="stylesheet">
+  <link href="data.css" rel="stylesheet">
   
 </head>
 <body ng-app="myApp"> 
@@ -28,7 +28,7 @@ function MyCtrl($scope) {
     $scope.company = null;
   }
   $scope.companyAutocompleteOpts = {
-    remote : 'http://localhost:8888/query/%QUERY',
+    remote : '/query/%QUERY',
     verify : function(datum) {
       return datum && _.has(datum, 'value')
     },

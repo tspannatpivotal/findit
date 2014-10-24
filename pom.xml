@@ -4,17 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.pivotal</groupId>
-	<artifactId>nbcuview</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>findit</artifactId>
+	<version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-	<name>nbcuview</name>
-	<description>nbcuview</description>
+	<name>findit</name>
+	<description>findit</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.1.5.RELEASE</version>
+		<version>1.1.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -37,15 +37,10 @@
 			<scope>test</scope>
 		</dependency>		
 <dependency>
-    <groupId>com.pivotal.gemfirexd</groupId>
-    <artifactId>gemfirexd-client</artifactId>
-    <version>1.0</version>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>5.1.32</version>
 </dependency>
-     <dependency>
-          <groupId>com.pivotal</groupId>
-          <artifactId>gfxd-dialect</artifactId>
-          <version>1.0</version>
-   </dependency>
 <dependency>
 <groupId>com.pivotal.gemfirexd</groupId>
 <artifactId>gemfirexd</artifactId>
@@ -111,7 +106,7 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>io.pivotal.nbcuview.Application</start-class>
+		<start-class>io.pivotal.findit.Application</start-class>
 		<java.version>1.7</java.version>
 	</properties>
 

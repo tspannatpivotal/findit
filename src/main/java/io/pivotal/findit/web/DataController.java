@@ -1,11 +1,11 @@
-package io.pivotal.nbcuview.web;
+package io.pivotal.findit.web;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import io.pivotal.nbcuview.domain.NameValue;
-import io.pivotal.nbcuview.service.DataSourceService;
+import io.pivotal.findit.domain.NameValue;
+import io.pivotal.findit.service.DataSourceService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

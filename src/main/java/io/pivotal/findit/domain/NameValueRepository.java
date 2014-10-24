@@ -1,4 +1,4 @@
-package io.pivotal.nbcuview.domain;
+package io.pivotal.findit.domain;
 
 import java.util.List;
 

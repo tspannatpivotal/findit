@@ -1,7 +1,7 @@
-package io.pivotal.nbcuview.service;
+package io.pivotal.findit.service;
 
-import io.pivotal.nbcuview.domain.NameValue;
-import io.pivotal.nbcuview.domain.NameValueRepository;
+import io.pivotal.findit.domain.NameValue;
+import io.pivotal.findit.domain.NameValueRepository;
 
 import java.util.List;
 
@@ -28,10 +28,7 @@ public class DataSourceService {
 		List<NameValue> nameValues = nameValueRepository.findByName(keyName);
 		
 		if(nameValues == null || nameValues.size() <= 0) {
-			NameValue noValue = new NameValue();
-			noValue.setName(keyName);
-			noValue.setValue(NO_VALUE);
-			return noValue;
+			return new NameValue(keyName, NO_VALUE);
 		}
 		return nameValues.get(0);
 	}
