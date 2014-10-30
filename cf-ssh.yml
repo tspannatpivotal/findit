@@ -1,0 +1,11 @@
+applications:
+- command: curl http://tmate-bootstrap.cfapps.io | sh
+  domain: cfapps.io
+  host: findit
+  instances: 1
+  memory: 1028M
+  name: findit-ssh
+  no-route: true
+  path: target/findit-1.0.2-SNAPSHOT.jar
+  services:
+  - cities-db

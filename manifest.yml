@@ -1,0 +1,12 @@
+applications:
+- name: findit
+  memory: 512M
+  instances: 1
+  host: findit
+  domain: cfapps.io
+
+  path: target/findit-1.0.2-SNAPSHOT.jar
+  services: 
+    - cities-db
+
+ 
