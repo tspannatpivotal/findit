@@ -18,7 +18,16 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+
 	<dependencies>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-data-rest</artifactId>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-mobile</artifactId>
+                </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -27,6 +36,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+            <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-remote-shell</artifactId>
+                </dependency>		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -66,11 +79,6 @@
        <name>Spring Maven Milestone Repository</name>
        <url>http://repo.spring.io/milestone</url>
      </repository>
-     <repository>
-<id>gemfirexd-repository</id>
-<name>GemFire XD Repository</name>
-<url>http://dist.gemstone.com/maven/release</url>
-</repository>
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -80,11 +88,6 @@
 			<id>spring-release</id>
 			<name>Spring Release</name>
 			<url>http://repo.spring.io/release</url>
-		</repository>
-		<repository>
-			<id>sqlfire-repository</id>
-			<name>SQLFire Repository</name>
-			<url>http://dist.gemstone.com/maven/release</url>
 		</repository>
 </repositories>
 
@@ -107,7 +110,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>io.pivotal.findit.Application</start-class>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<build>
@@ -120,8 +123,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
