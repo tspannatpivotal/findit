@@ -1,2 +1,0 @@
-stream create --name nbcufile --definition "tail --name=/tmp/xd/input/nbcudata | jdbc --tableName=APP.nbcudata --columns=id,name,value" --deploy
-stream create --name nbcufiletap --definition "tap:stream:nbcufile > hdfs" --deploy
