@@ -1,1 +1,5 @@
 /target/
+/.settings/
+.DS_Store
+.springBeans
+.project
