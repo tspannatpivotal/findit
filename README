@@ -1,3 +1,6 @@
+Find It
+
+Basic AngularJS Application for doing Type Ahead Queries against a JPA datasource with Spring Data REST enabled.
 
 Testing
 
