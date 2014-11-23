@@ -1,0 +1,1 @@
+cf cups my-logs -l syslog://173.61.119.194:5140
