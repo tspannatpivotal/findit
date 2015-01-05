@@ -48,7 +48,6 @@ public class DataController {
     	final String userAgent = getCurrentRequest().getHeader("user-agent");
     	final String userDisplay = String.format("IP:%s Browser:%s", userIpAddress, userAgent);
     	logger.error(userDisplay);
-    	//logger.error(System.getenv("VCAP_SERVICES"));
         return value;
     }
 

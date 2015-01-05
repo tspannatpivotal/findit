@@ -22,7 +22,7 @@ public class DataSourceService {
 	  
 	private final static String viewTemplate = "Name: %s";
 	private final static String saveTemplate = "Name: %s Value: %s";
-
+    
 	public boolean deleteValue(Long id) {
 		if ( id < 0) {
 			return false;
@@ -54,7 +54,16 @@ public class DataSourceService {
 		return nameValueRepository.save(nameValue);
 	}
 
+	// default to empty
+	public NameValue defaultValue() {
+		return new NameValue("","");
+	}
+	// default to name only
+	public NameValue defaultValue(String keyName) {
+		return new NameValue(keyName, keyName);
+	}
 	
+  //  @HystrixCommand(fallbackMethod = "defaultValue")
 	public NameValue retrieveValue(String keyName) {
 		logger.error(String.format(viewTemplate, keyName));
 

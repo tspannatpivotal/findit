@@ -2,38 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Search</title>
+  <title>Startup Name Search</title>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.js"></script>	
   <script src="./dist/js/ngAtp-bundle.js"></script>
   <link href="./dist/css/ng-atp.css" rel="stylesheet">
-  <link href="data.css" rel="stylesheet">
-  
+  <link href="data.css" rel="stylesheet">  
 </head>
 <body ng-app="myApp"> 
-
 <div ng-controller="MyCtrl" id="main" class="white-frame">  
-	<b>Search for Names:</b>
-	<br><br><p></p>
-
-  <p ng-class="{ success : company }"> {{ company }} <span class="close" ng-click="clearcompany()">×</span></p>
+	<b>Find a Startup Name:</b>
+  <p ng-class="{ success : company }">{{ company }}</p>
   <div ng-atp="company" ng-atp-config="companyAutocompleteOpts">
     <input id="inputfield1" ng-atp-input />
     <ul ng-atp-suggestions>
     </ul>
-  </div>
-  
-  <br><p></p><br>
-  
-  <a target="_new" href="findbyname.html">Find by Exact Name</a>
-
-<br><br>
-&copy; 2014 
-  
-</div>
-
+  </div> 
+<p></p>&copy; 2014 </div>
 <script>
-
 var myApp = angular.module('myApp',['ngAtp']);
 function MyCtrl($scope) {
   $scope.clearcompany = function() {
@@ -51,7 +37,5 @@ function MyCtrl($scope) {
 
 document.getElementById('inputfield1').focus();
 </script>
-
-
 </body>
 </html>

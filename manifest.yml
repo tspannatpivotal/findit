@@ -3,9 +3,7 @@ applications:
   memory: 512M
   instances: 1
   host: findit
-
   path: target/findit-1.0.2-SNAPSHOT.jar
   services: 
-    - cities-db
-
- 
+    - mydb
+    - mylogs
