@@ -56,8 +56,20 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		}
 		
 		@Test
+		public void store() {		
+			final NameValue testValue = new NameValue("Tim","NotTim");
+			final NameValue returnedValue = dataController.store(testValue.getName(),testValue.getValue());
+			final NameValue savedValue = dataController.retrieve(testValue.getName());
+			Assert.assertNotNull(returnedValue);
+			Assert.assertEquals(returnedValue.getValue(), testValue.getValue());
+			Assert.assertEquals(savedValue.getValue(), testValue.getValue());
+			Assert.assertEquals(savedValue.getName(), testValue.getName());
+			Assert.assertEquals(returnedValue.getId(), savedValue.getId());
+		}
+		
+		@Test
 		public void query() {
-			List<NameValue> nameValueList = dataController.query("M");
+			List<NameValue> nameValueList = dataController.query("P");
 			
 			Assert.assertNotNull(nameValueList);
 			Assert.assertEquals(3, nameValueList.size());

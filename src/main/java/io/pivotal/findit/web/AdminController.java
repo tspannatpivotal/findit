@@ -14,6 +14,7 @@ public class AdminController {
   @RequestMapping(value = "/kill", method = RequestMethod.GET)
   @ResponseBody
   public MessageResponse kill() {
+	System.err.println("Killing instance");
     System.exit(-1);
     return MessageResponse.errorResponse("system killed");
   }

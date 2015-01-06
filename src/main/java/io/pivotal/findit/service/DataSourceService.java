@@ -49,7 +49,7 @@ public class DataSourceService {
 			return null;
 		}
 
-		logger.error(String.format(saveTemplate, nameValue.toString()));
+		logger.error(String.format(saveTemplate, nameValue.getName(), nameValue.getValue()));
 
 		return nameValueRepository.save(nameValue);
 	}
@@ -78,7 +78,7 @@ public class DataSourceService {
 	public List<NameValue> search(String query) {
 		if ( query == null) { return null; }
 		
-		List<NameValue> nameValues = nameValueRepository.findByQuery(query); // + "%s");
+		List<NameValue> nameValues = nameValueRepository.findByQuery(query); 
 		logger.error("Size=" + nameValues.size());
 
 		return nameValues;
