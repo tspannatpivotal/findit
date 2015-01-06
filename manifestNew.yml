@@ -1,0 +1,9 @@
+applications:
+- name: findit
+  memory: 512M
+  instances: 3 
+  host: finditnow
+  path: target/findit-1.0.2-SNAPSHOT.jar
+  services: 
+    - mydb
+    - my-logs

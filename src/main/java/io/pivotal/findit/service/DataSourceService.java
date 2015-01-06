@@ -82,5 +82,9 @@ public class DataSourceService {
 		logger.error("Size=" + nameValues.size());
 
 		return nameValues;
+	}
+
+	public Iterable<NameValue> findAll() {
+		return nameValueRepository.findAll();
 	} 
 }

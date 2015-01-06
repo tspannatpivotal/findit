@@ -6,14 +6,12 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
 @Configuration
-@ComponentScan
+@ComponentScan  
 @Import(RepositoryRestMvcConfiguration.class)
 @EnableAutoConfiguration 
-@PropertySource("classpath:application.properties")
 public class Application extends SpringBootServletInitializer {
 
 	  @Override
@@ -24,8 +22,24 @@ public class Application extends SpringBootServletInitializer {
 	    public static void main(String[] args) {
 	        new SpringApplicationBuilder(Application.class).web(true).run(args);
 	    }
-        
+       
+
+//	    @Configuration
+//	    @Profile("default")
+//	    static class LocalConfiguration {
+//
+//	     @Bean
+//	           public DataSource dataSource() {
+//	               BasicDataSource dataSource = new BasicDataSource();
+//	               dataSource.setUrl("jdbc:postgresql://localhost/db");
+//	               dataSource.setDriverClassName("org.postgresql.Driver");
+//	               dataSource.setUsername("postgres");
+//	               dataSource.setPassword("postgres");
+//	               return dataSource;
+//	         }
+//	     }
 }
+
 
 
 

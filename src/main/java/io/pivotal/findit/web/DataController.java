@@ -3,6 +3,7 @@ package io.pivotal.findit.web;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
 
 import io.pivotal.findit.domain.NameValue;
 import io.pivotal.findit.service.DataSourceService;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -36,7 +39,7 @@ public class DataController {
 	private DataSourceService dataSourceService;
 	
     private static final String templateView = "Name %s Value %s";
-
+    
     @RequestMapping("/retrieve/{name}")
     public NameValue retrieve(
     		@PathVariable(value="name") String name) 
@@ -61,5 +64,23 @@ public class DataController {
     	final String userDisplay = String.format("Query:%s,IP:%s Browser:%s", query, userIpAddress, userAgent);
     	logger.error(userDisplay);
         return value;
+    }
+
+    @RequestMapping
+    public Iterable<NameValue> list() {
+        return dataSourceService.findAll();
+    }
+ 
+    @RequestMapping("/store")
+    public @ResponseBody NameValue store(
+            @RequestParam(value="name", required=false, defaultValue="name") String name,
+            @RequestParam(value="value", required=false, defaultValue="value") String value) 
+    {
+		NameValue returnValue = dataSourceService.storeValue(name, value);
+    	final String userIpAddress = getCurrentRequest().getRemoteAddr();
+    	final String userAgent = getCurrentRequest().getHeader("user-agent");
+    	final String userDisplay = String.format("Name/Value:%s/%s,IP:%s Browser:%s", name, value, userIpAddress, userAgent);
+    	logger.error(userDisplay);
+    	return returnValue;
     }
 }

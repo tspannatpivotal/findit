@@ -1,0 +1,38 @@
+## based on example application.yml -> https://github.com/spring-projects/spring-boot/blob/master/docs/application.yml
+
+spring:
+   
+   application.name: findit
+   profiles.active: cloud
+   main:
+     web-environment: true
+
+---
+
+spring:
+  profiles: cloud
+
+  boot:
+    admin.url: http://sbadmin.south.fe.pivotal.io
+
+  jpa:
+     show-sql: true
+     hibernate:
+       ddl-auto: create
+       
+---
+
+spring:
+  profiles: test
+
+  datasource:
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:blog
+    username: sa
+    password:
+  
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
