@@ -1,12 +1,11 @@
 package io.pivotal.findit.web;
 
+import io.pivotal.findit.domain.NameValue;
+import io.pivotal.findit.service.DataSourceService;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.GET;
-
-import io.pivotal.findit.domain.NameValue;
-import io.pivotal.findit.service.DataSourceService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +65,7 @@ public class DataController {
         return value;
     }
 
-    @RequestMapping
+    @RequestMapping("/list")
     public Iterable<NameValue> list() {
         return dataSourceService.findAll();
     }
