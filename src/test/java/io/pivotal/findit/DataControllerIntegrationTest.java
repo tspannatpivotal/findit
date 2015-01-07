@@ -1,9 +1,9 @@
 package io.pivotal.findit;
 
+import static org.junit.Assert.assertNotNull;
 import io.pivotal.findit.domain.NameValue;
 import io.pivotal.findit.web.DataController;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -60,7 +60,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 			final NameValue testValue = new NameValue("Tim","NotTim");
 			final NameValue returnedValue = dataController.store(testValue.getName(),testValue.getValue());
 			final NameValue savedValue = dataController.retrieve(testValue.getName());
-			Assert.assertNotNull(returnedValue);
+			assertNotNull(returnedValue);
 			Assert.assertEquals(returnedValue.getValue(), testValue.getValue());
 			Assert.assertEquals(savedValue.getValue(), testValue.getValue());
 			Assert.assertEquals(savedValue.getName(), testValue.getName());
@@ -70,11 +70,14 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		@Test
 		public void getUserTimeline() {
 			List<Tweet> tweets = dataController.getUserTimeline("cloudfoundry");
-			System.out.printf("Tweets %s", tweets.size());
-			for (Iterator iterator = tweets.iterator(); iterator.hasNext();) {
-				Tweet tweet = (Tweet) iterator.next();
-				System.out.printf("Tweet %s from %s", tweet.getText(), tweet.getFromUser());
-			}
+			Assert.assertNotNull(tweets);
+//			System.out.printf("Tweets %s\n", tweets.size());
+//			for (Iterator iterator = tweets.iterator(); iterator.hasNext();) {
+//				Tweet tweet = (Tweet) iterator.next();
+//				System.out.printf("Tweet [%s] from User[%s] Created[%s] RetweetCount[%s] Source[%s]\n", 
+//						tweet.getText(), tweet.getFromUser(),
+//						tweet.getCreatedAt(), tweet.getRetweetCount(), tweet.getSource());
+//			}
 		}
 		
 		@Test
