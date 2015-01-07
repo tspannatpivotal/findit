@@ -15,11 +15,9 @@
   <p ng-class="{ success : company }">{{ company }}</p>
   <div ng-atp="company" ng-atp-config="companyAutocompleteOpts">
     <input id="inputfield1" ng-atp-input />
-    <ul ng-atp-suggestions>
-    </ul>
-  </div> 
-<p></p>&copy; 2014 </div>
+    <ul ng-atp-suggestions></ul></div>&copy; 2015</div>
 <script>
+
 var myApp = angular.module('myApp',['ngAtp']);
 function MyCtrl($scope) {
   $scope.clearcompany = function() {

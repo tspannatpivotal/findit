@@ -2,6 +2,10 @@
 
 spring:
    
+   social:
+       twitter.appId: u924HorDXWfdEGa7yypyvWIS3
+       twitter.appSecret:  oxCeFbiI5Of5wmL49oda12Yv5U5uoty6JfgGGXUSYkack2UW9A
+
    application.name: findit
    profiles.active: cloud
    main:

@@ -1,11 +1,10 @@
 package io.pivotal.findit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.pivotal.findit.domain.NameValue;
 import io.pivotal.findit.web.DataController;
-import io.pivotal.findit.*;
+
+import java.util.Iterator;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.social.twitter.api.Tweet;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -68,11 +68,21 @@ import org.springframework.test.context.web.WebAppConfiguration;
 		}
 		
 		@Test
+		public void getUserTimeline() {
+			List<Tweet> tweets = dataController.getUserTimeline("cloudfoundry");
+			System.out.printf("Tweets %s", tweets.size());
+			for (Iterator iterator = tweets.iterator(); iterator.hasNext();) {
+				Tweet tweet = (Tweet) iterator.next();
+				System.out.printf("Tweet %s from %s", tweet.getText(), tweet.getFromUser());
+			}
+		}
+		
+		@Test
 		public void query() {
 			List<NameValue> nameValueList = dataController.query("P");
 			
 			Assert.assertNotNull(nameValueList);
-			Assert.assertEquals(3, nameValueList.size());
+			Assert.assertEquals(65, nameValueList.size());
 		}
 	    @Test
 	    public void retrieve() {

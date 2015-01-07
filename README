@@ -17,3 +17,7 @@ REST API
 http://localhost:8888/query/A
 
 
+Added
+
+/list
+/store

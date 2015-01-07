@@ -3,3 +3,4 @@
 .DS_Store
 .springBeans
 .project
+/src/main/resources/application.yml
